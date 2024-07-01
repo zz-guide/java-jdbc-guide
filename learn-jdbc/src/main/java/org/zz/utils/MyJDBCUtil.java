@@ -1,23 +1,21 @@
-package org.zz.db;
+package org.zz.utils;
 
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-/**
- * 自己封装的jdbc工具类
- */
 public class MyJDBCUtil {
-    private static String user;
-    private static String password;
-    private static String url;
-    private static String driver;
+    private static final String driver;
+    private static final String user;
+    private static final String password;
+    private static final String url;
 
     static {
         try {
             Properties properties = new Properties();
             InputStream inputStream = MyJDBCUtil.class.getResourceAsStream("/db.properties");
             properties.load(inputStream);
+
             user = properties.getProperty("user");
             password = properties.getProperty("password");
             url = properties.getProperty("url");
@@ -78,7 +76,7 @@ public class MyJDBCUtil {
      * @param obj 参数
      * @return bool
      */
-    public static boolean cud(String sql, Object... obj) {
+    public static boolean execute(String sql, Object... obj) {
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -86,15 +84,19 @@ public class MyJDBCUtil {
             conn = getConnection();
             ps = conn.prepareStatement(sql);
 
+            // 根据位置设置参数
             for (int i = 1; i <= obj.length; i++) {
                 ps.setObject(i, obj[i - 1]);
             }
 
             System.out.println("执行sql:" + sql);
             int res = ps.executeUpdate();
+
+            System.out.println("ps.executeUpdate:"+res);
+            System.out.println(":"+res);
             return res > 0;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         } finally {
             close(ps, conn, null);
         }

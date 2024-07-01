@@ -1,4 +1,4 @@
-package org.zz.db;
+package org.zz.utils;
 
 import org.apache.commons.dbutils.DbUtils;
 

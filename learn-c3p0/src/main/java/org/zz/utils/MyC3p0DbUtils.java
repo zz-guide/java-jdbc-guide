@@ -1,4 +1,4 @@
-package org.zz.db;
+package org.zz.utils;
 
 import c3p0.pojo.Store;
 import org.apache.commons.dbutils.QueryRunner;
