@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 数据库连接信息存在properties文件中，引入供后续标签使用-->
+    <properties resource="mybatis.properties"/>
+    <!--全局参数-->
+<!--    <settings>-->
+        <!-- 使全局的映射器启用或禁用缓存 -->
+        <!--        <setting name="cacheEnabled" value="true"/>-->
+        <!-- 允许JDBC 支持自动生成主键 -->
+        <!--        <setting name="useGeneratedKeys" value="true"/>-->
+        <!-- 配置默认的执行器.SIMPLE就是普通执行器;REUSE执行器会重用预处理语句(prepared statements);BATCH执行器将重用语句并执行批量更新 -->
+        <!--        <setting name="defaultExecutorType" value="SIMPLE"/>-->
+        <!-- 指定 MyBatis 所用日志的具体实现 -->
+        <!--        <setting name="logImpl" value="LOG4J2"/>-->
+        <!-- 使用驼峰命名法转换字段 -->
+        <!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
+
+        <!-- 打开延迟加载的开关 -->
+<!--        <setting name="lazyLoadingEnabled" value="true" />-->
+        <!-- 将积极加载改为按需加载 -->
+<!--        <setting name="aggressiveLazyLoading" value="false" />-->
+<!--    </settings>-->
+
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="false" />
+    </settings>
+
+    <typeAliases>
+        <!--整个包下类都开启别名,配置别名以后resultType默认以类名小写为限定名称-->
+        <package name="org.zz.domain"/>
+        <!-- 具体某一个类别名，与上边的包别名冲突，只能存在一个-->
+        <!-- <typeAlias alias="UUU" type="mybatis.pojo.User"/>-->
+    </typeAliases>
+
+    <!--可配置多个环境，通过default切换-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/UserMapperLeftJoin.xml"/>
+        <mapper resource="mapper/OrderMapper.xml"/>
+        <mapper resource="mapper/OrderMapperLeftJoin.xml"/>
+    </mappers>
+</configuration>

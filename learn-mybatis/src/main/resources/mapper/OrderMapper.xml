@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.mapper.OrderMapper">
+    <sql id="tableName">`orders`</sql>
+
+    <sql id="selectOrderVo">
+        select * from
+        <include refid="tableName" />
+    </sql>
+
+    <resultMap id="orderResultMap" type="Order">
+        <result property="id" column="id" />
+        <result property="sn" column="sn" />
+        <result property="userId" column="user_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+    </resultMap>
+
+    <!--嵌套查询方式， 有多个user_id的话会查询多次-->
+    <resultMap id="orderAssociationResultMap" type="Order">
+        <result property="id" column="id" />
+        <result property="sn" column="sn" />
+        <result property="userId" column="user_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <association property="user" column="user_id" javaType="User" select="org.zz.mapper.UserMapper.getById"/>
+    </resultMap>
+
+    <resultMap id="UserResultMap" type="User">
+        <id property="id" column="user_id" />
+        <result property="name" column="u_name" />
+        <result property="username" column="u_username" />
+        <result property="password" column="u_password" />
+        <result property="createdAt" column="u_created_at" />
+        <result property="updatedAt" column="u_updated_at" />
+    </resultMap>
+
+    <!--嵌套结果集方式-->
+    <resultMap id="orderAssociationResultMap2" type="Order">
+        <result property="id" column="id" />
+        <result property="sn" column="sn" />
+        <result property="userId" column="user_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <association property="user" column="user_id" javaType="User" resultMap="UserResultMap"/>
+    </resultMap>
+
+    <!--单条插入-->
+    <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName" />
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sn != null">sn,</if>
+            <if test="userId != null">user_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sn != null">#{sn},</if>
+            <if test="userId != null">#{userId},</if>
+        </trim>
+    </insert>
+
+    <!--批量插入-->
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName" />
+        (sn,user_id) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.sn}, #{item.userId})
+        </foreach>
+    </insert>
+
+    <!--查询全部-->
+    <select id="getList" resultMap="orderAssociationResultMap">
+        <include refid="selectOrderVo" />
+        <where>
+        </where>
+    </select>
+
+    <!--根据user_id查询-->
+    <select id="getListByUserId" parameterType="Long" resultMap="orderAssociationResultMap2">
+        <include refid="selectOrderVo" />
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
+
+    <!--根据id查询-->
+    <select id="getById" parameterType="Long"  resultMap="orderResultMap">
+        <include refid="selectOrderVo" />
+        <where>
+            id = #{id}
+        </where>
+    </select>
+</mapper>

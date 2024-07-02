@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.mapper.OrderMapper">
+    <sql id="selectOrderWithLeftJoinVo">
+        select
+        o.id as id,
+        o.sn as sn,
+        o.user_id as user_id,
+        o.created_at as created_at,
+        o.updated_at as updated_at,
+        u.id as u_id,
+        u.name as u_name,
+        u.username as u_username,
+        u.password as u_password,
+        u.created_at as u_created_at,
+        u.updated_at as u_updated_at
+        from `orders` as o left join user as u
+        on o.user_id = u.id
+    </sql>
+
+    <resultMap id="orderLeftJoinResultMap" type="Order">
+        <result property="id" column="id" />
+        <result property="sn" column="sn" />
+        <result property="userId" column="user_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <association property="user" column="user_id" javaType="User" resultMap="joinUserResultMap" />
+    </resultMap>
+
+    <resultMap id="joinUserResultMap" type="User">
+        <!--细节，不要使用order表中的user_id,防止无效的user对象-->
+        <id property="id" column="u_id" />
+        <result property="name" column="u_name" />
+        <result property="username" column="u_username" />
+        <result property="password" column="u_password" />
+        <result property="createdAt" column="u_created_at" />
+        <result property="updatedAt" column="u_updated_at" />
+    </resultMap>
+
+    <select id="getListWithLeftJoin" resultMap="orderLeftJoinResultMap">
+        <include refid="selectOrderWithLeftJoinVo"/>
+    </select>
+</mapper>
