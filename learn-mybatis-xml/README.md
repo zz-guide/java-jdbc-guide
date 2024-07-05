@@ -16,6 +16,7 @@
 - [x] 聚合查询
 - [x] group by
 - [x] 子查询
+- [x] 事务
 
 ## mybatis 结论
 ```text

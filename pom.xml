@@ -16,6 +16,7 @@
         <module>learn-commons-dbutils</module>
         <module>learn-mybatis-xml</module>
         <module>learn-mybatis-annotation</module>
+        <module>learn-spring-jdbc</module>
     </modules>
 
     <properties>

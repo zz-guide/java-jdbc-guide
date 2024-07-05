@@ -16,4 +16,5 @@ java数据库操作练习
 - [x] commons-dbutils(c3p0, druid等)
 - [x] mybatis-xml
 - [x] mybatis-annotation
+- [x] spring-jdbc
 - [x] 连接池参数
