@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.UserMapper">
+    <!--根据id查询单条记录, xml没办法去做校验逻辑，比如参数传没传，没传就不要查询这种的，调用方自行做好校验-->
+    <select id="getById" parameterType="Long" resultMap="userResultMap">
+        <include refid="selectUserBase" />
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <!-- in 查询-->
+    <select id="getByIds" parameterType="Long"  resultMap="userResultMap">
+        <include refid="selectUserBase" />
+        <where>
+            id IN
+        </where>
+        <foreach item="item" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        <!--不建议使用以下方式，因为与预期不符，参数没有直接返回空，而不是查全表-->
+        <!--        <if test="array != null and array.length > 0">-->
+        <!--            where id IN-->
+        <!--            <foreach item="item" collection="array" open="(" separator="," close=")">-->
+        <!--                #{item}-->
+        <!--            </foreach>-->
+        <!--        </if>-->
+    </select>
+
+    <!--全表查询-->
+    <select id="getList" resultMap="userResultMap">
+        <include refid="selectUserBase" />
+        <where>
+        </where>
+    </select>
+
+    <!--分页查询-->
+    <select id="getPageList" resultMap="userResultMap">
+        <include refid="selectUserBase" />
+        <where>
+        </where>
+    </select>
+</mapper>

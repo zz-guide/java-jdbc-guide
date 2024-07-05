@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.UserMapper">
+
+    <!--根据主键删除单条记录-->
+    <delete id="deleteById" parameterType="Long">
+        delete from
+        <include refid="tableName" />
+        <where>
+            id = #{id}
+        </where>
+    </delete>
+
+    <!--根据主键批量删除-->
+    <delete id="deleteByIds" parameterType="Long">
+        delete from
+        <include refid="tableName" />
+        <where>
+            id IN (
+        </where>
+        <!-- 不建议这么写，防止参数没有的时候把整张表删除了，最好是service层控制一下-->
+        <foreach item="id" collection="array" open="" separator="," close="">
+            #{id}
+        </foreach>
+        )
+    </delete>
+</mapper>

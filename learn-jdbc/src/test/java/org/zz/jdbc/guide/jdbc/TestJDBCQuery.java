@@ -29,6 +29,7 @@ public class TestJDBCQuery {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            System.out.println("sql:"+preparedStatement.toString());
             System.out.println("resultSet.getRow():"+resultSet.getRow()); // 检索当前游标所在行号
             System.out.println("resultSet.isBeforeFirst():"+resultSet.isBeforeFirst());
 

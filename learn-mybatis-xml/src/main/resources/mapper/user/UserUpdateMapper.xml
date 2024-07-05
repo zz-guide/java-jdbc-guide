@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.UserMapper">
+    <!--根据id修改user-->
+    <update id="updateById" parameterType="User">
+        update
+        <include refid="tableName" />
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="createdAt != null">created_at = #{createdAt},</if>
+            <if test="updatedAt != null">updated_at = #{updatedAt},</if>
+        </trim>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <!-- 另一种写法 -->
+    <update id="updateByIdAlias" parameterType="User">
+        update
+        <include refid="tableName" />
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="createdAt != null">created_at = #{createdAt},</if>
+            <if test="updatedAt != null">updated_at = #{updatedAt},</if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+</mapper>

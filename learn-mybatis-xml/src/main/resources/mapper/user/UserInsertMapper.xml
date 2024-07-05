@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.UserMapper">
+    <!--单条插入-->
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName" />
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="username != null">#{username},</if>
+            <if test="password != null">#{password},</if>
+        </trim>
+    </insert>
+
+    <!--批量插入, 列数得统一，默认值在参数构造的时候就设置好-->
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName" />
+        (name, username, password) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.name}, #{item.username}, #{item.password})
+        </foreach>
+    </insert>
+</mapper>

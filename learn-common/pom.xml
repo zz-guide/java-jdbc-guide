@@ -9,6 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <groupId>org.zz.jdbc.guide.common</groupId>
     <artifactId>learn-common</artifactId>
 
     <properties>

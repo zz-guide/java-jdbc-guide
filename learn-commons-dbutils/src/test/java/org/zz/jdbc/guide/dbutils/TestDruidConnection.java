@@ -1,5 +1,6 @@
 package org.zz.jdbc.guide.dbutils;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.zz.jdbc.guide.dbutils.utils.MyDruidUtils;
 
@@ -10,5 +11,6 @@ public class TestDruidConnection {
     @Test
     public void testConnection(){
         Connection conn = MyDruidUtils.getConnection();
+        Assertions.assertNotNull(conn);
     }
 }

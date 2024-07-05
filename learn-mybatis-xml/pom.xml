@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.zz.jdbc.guide.jdbc</groupId>
-    <artifactId>learn-jdbc</artifactId>
+    <groupId>org.zz.jdbc.guide.mybatis.xml</groupId>
+    <artifactId>learn-mybatis-xml</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -35,7 +35,19 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
         </dependency>
 
     </dependencies>
