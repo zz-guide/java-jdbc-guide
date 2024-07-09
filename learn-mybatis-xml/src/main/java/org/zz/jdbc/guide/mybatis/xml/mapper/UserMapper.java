@@ -1,9 +1,11 @@
 package org.zz.jdbc.guide.mybatis.xml.mapper;
 
 
+import org.apache.ibatis.session.RowBounds;
 import org.zz.jdbc.guide.common.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     // === 增 ===
@@ -22,7 +24,12 @@ public interface UserMapper {
     public User getById(Long id);
     public List<User> getByIds(Long[] ids);
     public List<User> getList();
-    public List<User> getPageList(Integer currentPage, Integer pageSize);
     public User getByIdWithLeftJoin(Long id);
+
+    public List<User> getPageList(Map<String,Integer> map);
+    public List<User> getPageListByRowBounds(RowBounds rowBounds);
+    // === pageHelper 插件相关方法 ===
+    public List<User> getPageListByPageHelper();
+
 }
 

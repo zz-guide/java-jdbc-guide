@@ -17,7 +17,7 @@ class TestUserDelete {
     void testDeleteById() {
         Logger logger = Logger.getLogger("testDeleteById");
 
-        long id = 3;
+        long id = 4;
         User user = userMapper.getById(id);
         if (user == null) {
             logger.log(Level.INFO, "用户不存在");
@@ -32,7 +32,7 @@ class TestUserDelete {
     @Test
     void testDeleteByIds() {
         Logger logger = Logger.getLogger("testDeleteByIds");
-        Long[] ids = new Long[]{1L, 2L, 3L};
+        Long[] ids = {1L, 2L, 3L};
         if (ids.length == 0) {
             logger.log(Level.INFO, "ids 数量 不能为空");
             return;

@@ -34,10 +34,14 @@
         </where>
     </select>
 
-    <!--分页查询-->
-    <select id="getPageList" resultMap="userResultMap">
+    <!--分页查询, 常规limit方式-->
+    <select id="getPageList" parameterType="map" resultMap="userResultMap">
         <include refid="selectUserBase" />
-        <where>
-        </where>
+        limit #{offset},#{pageSize}
+    </select>
+
+    <!--分页查询, RowBounds 方式，由mybatis提供-->
+    <select id="getPageListByRowBounds" resultMap="userResultMap">
+        <include refid="selectUserBase" />
     </select>
 </mapper>

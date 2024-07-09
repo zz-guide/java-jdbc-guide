@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.zz.jdbc.guide.spring.jdbc.template</groupId>
-    <artifactId>learn-spring-jdbc</artifactId>
+    <groupId>org.zz.jdbc.guide.spring.data.jdbc</groupId>
+    <artifactId>learn-spring-data-jdbc</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

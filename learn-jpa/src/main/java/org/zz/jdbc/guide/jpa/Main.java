@@ -1,4 +1,4 @@
-package org.zz.jdbc.guide.spring.jdbc;
+package org.zz.jdbc.guide.jpa;
 
 public class Main {
     public static void main(String[] args) {

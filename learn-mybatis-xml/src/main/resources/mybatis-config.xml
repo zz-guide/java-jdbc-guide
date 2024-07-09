@@ -5,13 +5,20 @@
 <configuration>
     <properties resource="db.properties"/>
     <settings>
-        <setting name="lazyLoadingEnabled" value="true" />
-        <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <typeAliases>
         <package name="org.zz.jdbc.guide.common.entity"/>
     </typeAliases>
+
+    <!--pagehelper 插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
 
     <!--可配置多个环境，通过default切换-->
     <environments default="development">
@@ -33,4 +40,5 @@
         <mapper resource="mapper/user/UserUpdateMapper.xml"/>
         <mapper resource="mapper/user/UserQueryMapper.xml"/>
     </mappers>
+
 </configuration>

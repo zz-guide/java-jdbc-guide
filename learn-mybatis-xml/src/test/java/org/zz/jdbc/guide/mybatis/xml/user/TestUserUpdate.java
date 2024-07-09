@@ -17,7 +17,7 @@ class TestUserUpdate {
     void testUpdateById() {
         Logger logger = Logger.getLogger("testUpdateById");
 
-        long id = 1;
+        long id = 5;
         User user = userMapper.getById(id);
         if (user == null) {
             System.out.println("查询失败，请重试");
@@ -27,6 +27,7 @@ class TestUserUpdate {
 
         user.setName("修改过的:" + user.getName());
         int affectRows = userMapper.updateById(user);
+        session.commit();
         logger.log(Level.INFO, "update user by id affectRows: {0}", new Object[]{affectRows});
     }
 }
