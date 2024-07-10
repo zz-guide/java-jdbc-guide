@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.UserMapper">
-    <!--根据id查询单条记录, xml没办法去做校验逻辑，比如参数传没传，没传就不要查询这种的，调用方自行做好校验-->
-    <select id="getCount" resultType="Long">
-        <include refid="selectUserBase" />
-        <where>
-            id = #{id}
-        </where>
+    <!--count()-->
+    <select id="getTotalCount" resultType="java.lang.Long">
+        select count(*) from <include refid="tableName" />
     </select>
 
+    <!--group by-->
+    <resultMap id="groupByResultMap" type="java.util.Map">
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="count(*)" property="count" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="getGroupByList" resultMap="groupByResultMap">
+        select password, count(*) from <include refid="tableName" /> group by password
+    </select>
+
+    <!--ORDER BY FIELD()-->
+    <select id="getListByFieldOrder" resultMap="userResultMap">
+        <include refid="selectUserBase" /> ORDER BY FIELD(password, '1234567', '12345678', '123456'), id DESC;
+    </select>
 </mapper>

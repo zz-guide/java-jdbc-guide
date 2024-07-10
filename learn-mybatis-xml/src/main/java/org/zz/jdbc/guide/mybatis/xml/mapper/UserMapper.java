@@ -6,6 +6,7 @@ import org.zz.jdbc.guide.common.entity.User;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public interface UserMapper {
     // === 增 ===
@@ -28,6 +29,12 @@ public interface UserMapper {
 
     public List<User> getPageList(Map<String,Integer> map);
     public List<User> getPageListByRowBounds(RowBounds rowBounds);
+
+    // === 聚合查询 ===
+    public Long getTotalCount();
+    public List<Map<String, Objects>> getGroupByList();
+    public List<User> getListByFieldOrder();
+
     // === pageHelper 插件相关方法 ===
     public List<User> getPageListByPageHelper();
 

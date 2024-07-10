@@ -3,7 +3,7 @@ package org.zz.jdbc.guide.mybatis.annotation;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.zz.jdbc.guide.mybatis.xml.utils.MybatisUtils;
+import org.zz.jdbc.guide.mybatis.annotation.utils.MybatisUtils;
 
 
 class TestSqlSession {

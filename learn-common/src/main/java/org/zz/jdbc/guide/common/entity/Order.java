@@ -17,6 +17,4 @@ public class Order {
     private Long userId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    // 外键实体
-    private User user;
 }

@@ -21,7 +21,7 @@ class TestUserQuery {
         long id = 10;
         User user = userMapper.getById(id);
 
-        logger.log(Level.INFO, "查询出来的user 对象: {0}", new Object[]{user.toString()});
+        logger.log(Level.INFO, "查询出来的user 对象: {0}", new Object[]{user});
     }
 
     @Test

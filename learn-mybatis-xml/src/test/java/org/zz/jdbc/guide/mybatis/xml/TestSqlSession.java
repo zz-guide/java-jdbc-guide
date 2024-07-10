@@ -5,10 +5,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.zz.jdbc.guide.mybatis.xml.utils.MybatisUtils;
 
+import java.util.logging.Logger;
+
 
 class TestSqlSession {
     @Test
-    void testBeanDefaultValue(){
+    void testSqlSession(){
+        Logger logger = Logger.getLogger("testSqlSession");
+
         SqlSession session = MybatisUtils.getSession();
         Assertions.assertNotNull(session);
     }

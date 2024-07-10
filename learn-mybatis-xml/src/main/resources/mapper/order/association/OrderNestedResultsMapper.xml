@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.OrderAssociationMapper">
+    <resultMap id="orderModelLeftJoinUserResultMap" type="OrderModel">
+        <id property="id" column="id" />
+        <result property="sn" column="sn" />
+        <result property="userId" column="user_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <association property="user" column="user_id" javaType="UserModel" columnPrefix="u_">
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+            <result property="username" column="username" />
+            <result property="password" column="password" />
+            <result property="createdAt" column="created_at" />
+            <result property="updatedAt" column="updated_at" />
+        </association>
+    </resultMap>
+
+    <select id="getListLeftJoinUser" resultMap="orderModelLeftJoinUserResultMap">
+        select
+        o.id as id,
+        o.sn as sn,
+        o.user_id as user_id,
+        o.created_at as created_at,
+        o.updated_at as updated_at,
+        u.id as u_id,
+        u.name as u_name,
+        u.username as u_username,
+        u.password as u_password,
+        u.created_at as u_created_at,
+        u.updated_at as u_updated_at
+        from `orders` as o left outer join user as u on o.user_id = u.id
+    </select>
+</mapper>

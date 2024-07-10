@@ -13,18 +13,12 @@
     <select id="getByIds" parameterType="Long"  resultMap="userResultMap">
         <include refid="selectUserBase" />
         <where>
-            id IN
+            id IN (
         </where>
-        <foreach item="item" collection="array" open="(" separator="," close=")">
+        <foreach item="item" collection="array" separator=",">
             #{item}
         </foreach>
-        <!--不建议使用以下方式，因为与预期不符，参数没有直接返回空，而不是查全表-->
-        <!--        <if test="array != null and array.length > 0">-->
-        <!--            where id IN-->
-        <!--            <foreach item="item" collection="array" open="(" separator="," close=")">-->
-        <!--                #{item}-->
-        <!--            </foreach>-->
-        <!--        </if>-->
+        )
     </select>
 
     <!--全表查询-->

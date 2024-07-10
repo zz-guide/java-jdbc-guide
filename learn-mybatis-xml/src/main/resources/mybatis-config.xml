@@ -7,10 +7,13 @@
     <settings>
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"/>
+        <!--开启sql日志-->
+        <setting name="logImpl" value="SLF4J"/>
     </settings>
 
     <typeAliases>
         <package name="org.zz.jdbc.guide.common.entity"/>
+        <package name="org.zz.jdbc.guide.common.model"/>
     </typeAliases>
 
     <!--pagehelper 插件-->
@@ -39,6 +42,19 @@
         <mapper resource="mapper/user/UserDeleteMapper.xml"/>
         <mapper resource="mapper/user/UserUpdateMapper.xml"/>
         <mapper resource="mapper/user/UserQueryMapper.xml"/>
+        <mapper resource="mapper/user/UserPageHelperQueryMapper.xml"/>
+        <mapper resource="mapper/user/UserAggregationQueryMapper.xml"/>
+        <mapper resource="mapper/order/OrderMapper.xml"/>
+        <mapper resource="mapper/order/OrderInsertMapper.xml"/>
+
+        <!-- 关联查询相关 -->
+        <mapper resource="mapper/user/association/UserAssociationQueryMapper.xml"/>
+        <mapper resource="mapper/user/association/UserNestedSelectMapper.xml"/>
+        <mapper resource="mapper/user/association/UserNestedResultsMapper.xml"/>
+
+        <mapper resource="mapper/order/association/OrderAssociationQueryMapper.xml"/>
+        <mapper resource="mapper/order/association/OrderNestedSelectMapper.xml"/>
+        <mapper resource="mapper/order/association/OrderNestedResultsMapper.xml"/>
     </mappers>
 
 </configuration>

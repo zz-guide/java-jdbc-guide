@@ -11,7 +11,7 @@
     </sql>
 
     <resultMap id="userResultMap" type="User">
-        <result property="id" column="id" />
+        <id property="id" column="id" />
         <result property="name" column="name" />
         <result property="username" column="username" />
         <result property="password" column="password" />

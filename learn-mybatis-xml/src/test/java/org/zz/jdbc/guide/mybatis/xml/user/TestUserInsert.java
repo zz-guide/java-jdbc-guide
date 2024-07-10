@@ -27,7 +27,7 @@ class TestUserInsert {
         session.commit();
         // 相比之下，只填充了 主键 字段
         logger.log(Level.INFO, "insert user affectRows: {0}", new Object[]{affectRows});
-        logger.log(Level.INFO, "插入的 user 对象: {0}", new Object[]{user.toString()});
+        logger.log(Level.INFO, "插入的 user 对象: {0}", new Object[]{user});
 
         if (affectRows > 0) {
             User newUser = userMapper.getById(user.getId());
@@ -37,7 +37,7 @@ class TestUserInsert {
 
     @Test
     void testBatchInsert(){
-        Logger logger = Logger.getLogger("testInsert");
+        Logger logger = Logger.getLogger("testBatchInsert");
 
         // 准备一会要批量插入的数据
         List<User> users = new ArrayList<>();

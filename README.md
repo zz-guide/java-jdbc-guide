@@ -2,10 +2,8 @@
 - [jdbc](https://dev.mysql.com/downloads/connector/j/)
 - [commons-dbutils](https://commons.apache.org/proper/commons-dbutils/examples.html)
 - [mybatis](https://mybatis.org/mybatis-3/zh_CN/getting-started.html)
-- [hibernate](https://hibernate.org/)
-- [spring-data-jdbc](https://spring.io/projects/spring-data-jdbc)
-- [spring-data-jpa](https://spring.io/projects/spring-data-jpa)
 - [pagehelper](https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md)
+- [hibernate](https://hibernate.org/)
 
 java数据库操作练习
 
@@ -20,8 +18,6 @@ java数据库操作练习
 - [x] commons-dbutils(c3p0, druid等)
 - [x] mybatis-xml
 - [ ] mybatis-annotation
-- [ ] hibernate
-- [ ] spring-data-jdbc
-- [ ] spring-data-jpa
 - [ ] mybatis-pagehelper
+- [ ] hibernate
 - [x] 连接池参数

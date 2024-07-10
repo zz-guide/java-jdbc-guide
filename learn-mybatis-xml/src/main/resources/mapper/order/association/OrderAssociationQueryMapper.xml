@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zz.jdbc.guide.mybatis.xml.mapper.OrderAssociationMapper">
+    <sql id="tableName">`orders`</sql>
+
+    <sql id="selectOrderModelBase">
+        select `id`,`sn`,`user_id`,`created_at`,`updated_at` from
+        <include refid="tableName" />
+    </sql>
+
+    <resultMap id="orderModelResultMap" type="OrderModel">
+        <id property="id" column="id" />
+        <result property="sn" column="sn" />
+        <result property="userId" column="user_id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+    </resultMap>
+</mapper>

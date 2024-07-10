@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class TestOrderInsert {
@@ -33,14 +34,15 @@ class TestOrderInsert {
     }
 
     @Test
-    void testInsert(){
-        Logger logger = Logger.getLogger("testInsert");
+    void testBatchInsert(){
+        Logger logger = Logger.getLogger("testBatchInsert");
 
         // 获取所有的user_id
         List<Long> userIds = getUserList().stream().map(User::getId).toList();
 
+        // 创建 n 个订单，用户随机选
         List<Order> orders = new ArrayList<>();
-        for (int i =0; i < 10; i++) {
+        for (int i =0; i < 20; i++) {
             Long randomUserId = getRandomListElement(userIds);
             String uuid = UUID.randomUUID().toString().replace("-", "");
             Order order = Order.builder().sn(uuid).userId(randomUserId).build();
@@ -49,9 +51,9 @@ class TestOrderInsert {
 
         int affectRows = orderMapper.batchInsert(orders);
         session.commit();
-        System.out.println("insertOrder affectRows:" + affectRows);
+        logger.log(Level.INFO, "batch insert orders affectRows: {0}", new Object[]{affectRows});
         for (Order order : orders) {
-            System.out.println("order:" + order);
+            logger.log(Level.INFO, "批量插入的 order 对象: {0}", new Object[]{order.toString()});
         }
     }
 }
