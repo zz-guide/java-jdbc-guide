@@ -1,7 +1,10 @@
 package org.zz.jdbc.guide.mybatis.plus.utils;
 
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
+import org.apache.ibatis.mapping.ParameterMap;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,6 +28,14 @@ public class MybatisPlusUtils {
             MybatisConfiguration configuration = new MybatisConfiguration(environment);
             configuration.addMapper(UserMapper.class);
             configuration.setLogImpl(StdOutImpl.class);
+
+            PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
+
+            MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+            mybatisPlusInterceptor.addInnerInterceptor(paginationInnerInterceptor);
+
+            configuration.addInterceptor(mybatisPlusInterceptor);
+
             sqlSessionFactory =new MybatisSqlSessionFactoryBuilder().build(configuration);
             System.out.println("连接成功");
         } catch (Exception e) {

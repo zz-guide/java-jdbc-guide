@@ -18,6 +18,6 @@ java数据库操作练习
 - [x] commons-dbutils(c3p0, druid等)
 - [x] mybatis-xml
 - [ ] mybatis-annotation
-- [ ] mybatis-pagehelper
+- [x] mybatis-pagehelper
 - [ ] hibernate
 - [x] 连接池参数

@@ -18,7 +18,7 @@ class TestUserQueryWrapper {
     void testAllCondition(){
         Logger logger = Logger.getLogger("testAllCondition");
 
-        long userId = 1;
+        // 尝试大部分查询条件
         QueryWrapper<User> queryWrapper =  new QueryWrapper<>();
         queryWrapper.eq("id", 1); // =
         queryWrapper.ne("id", 2); // !=, <>
