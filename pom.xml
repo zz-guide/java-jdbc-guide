@@ -19,6 +19,8 @@
         <module>learn-hibernate</module>
         <module>learn-jpa</module>
         <module>learn-mybatis-plus</module>
+        <module>learn-mybatis-generator</module>
+        <module>learn-mybatis-plugin</module>
     </modules>
 
     <properties>

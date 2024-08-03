@@ -29,8 +29,10 @@ public class MybatisPlusUtils {
             configuration.addMapper(UserMapper.class);
             configuration.setLogImpl(StdOutImpl.class);
 
+            // 分页拦截器
             PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
 
+            // MybatisPlusInterceptor
             MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
             mybatisPlusInterceptor.addInnerInterceptor(paginationInnerInterceptor);
 

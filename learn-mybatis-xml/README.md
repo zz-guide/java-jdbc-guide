@@ -7,17 +7,16 @@
 - orders
 - address
 
-
 ## Roadmap
 - [x] 增删改查
 - [x] 批量插入
+- [x] 事务
 - [x] 分页
 - [x] join 查询
 - [x] 聚合查询, count
 - [x] group by
-- [ ] 函数查询 FIELD()
+- [x] 函数查询 FIELD()
 - [x] 子查询
-- [x] 事务
 
 ## mybatis 结论
 ```text
@@ -40,20 +39,7 @@
 
 8.对于left join，比如查询订单时候，需要查询user信息，xml中user的result不要关联order表的属性，避免出现本来查询结果是null但是却返回了一个id为0的关联对象
 
-9. left join如果关联表有多条的话，结果也是多条
+9.left join如果关联表有多条的话，结果也是多条
 
-10. 分页
-
-11. 动态查询
-
-12. 注解方式只适合写一些简单的查询，复杂的还是通过xml配置比较好
+10. 注解方式只适合写一些简单的查询，复杂的还是通过xml配置比较好
 ```
-
-# FAQ
-# mybatis FAQ
-
-## dsn后边的参数都有什么作用？
-
-### zeroDateTimeBehavior=CONVERT_TO_NULL
-
-### useAffectedRows=TRUE

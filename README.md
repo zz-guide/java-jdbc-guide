@@ -20,4 +20,5 @@ java数据库操作练习
 - [ ] mybatis-annotation
 - [x] mybatis-pagehelper
 - [ ] hibernate
-- [x] 连接池参数
+- [x] learn-mybatis-generator
+- [x] mybatis-plugin mybatis generator(自定义lombok插件)
